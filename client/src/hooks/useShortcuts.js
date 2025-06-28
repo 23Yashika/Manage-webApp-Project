@@ -12,11 +12,11 @@ const useShortcuts = (userId) => {
 
   const fetchData = async () => {
     if (!userId) return;
-    
+
     try {
       setLoadingUser(true);
       setError(null);
-      
+
       const [userResponse, shortcutsResponse] = await Promise.all([
         fetch(`http://localhost:5000/api/auth/${userId}`),
         fetch(`http://localhost:5000/api/shortcuts/${userId}`)
@@ -27,7 +27,7 @@ const useShortcuts = (userId) => {
 
       const userData = await userResponse.json();
       const shortcutsData = await shortcutsResponse.json();
-      
+
       setUser(userData);
       setShortcuts(shortcutsData);
     } catch (err) {
@@ -80,7 +80,7 @@ const useShortcuts = (userId) => {
   };
 
   const startEditing = (shortcut) => {
-    setEditingId(shortcut._id);
+    setEditingId(shortcut._id); // 👈 used by Update button
     setName(shortcut.name);
     setUrl(shortcut.url);
   };
@@ -107,8 +107,8 @@ const useShortcuts = (userId) => {
         throw new Error(errorData.error || 'Failed to update shortcut');
       }
 
-      cancelEditing();
-      await fetchData();
+      cancelEditing(); // reset form + editingId
+      await fetchData(); // reload shortcuts
     } catch (err) {
       setError(err.message);
     }
@@ -134,7 +134,7 @@ const useShortcuts = (userId) => {
     editShortcut,
     startEditing,
     cancelEditing,
-    editingId
+    editingId, 
   };
 };
 

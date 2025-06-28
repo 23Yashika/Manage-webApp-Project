@@ -26,6 +26,7 @@ const Home = () => {
   if (loadingUser) return <div className="text-center mt-10">Loading...</div>;
   if (error) return <div className="text-center mt-10 text-red-500">{error}</div>;
   if (!user) return <div className="text-center mt-10 text-red-500">User not found</div>;
+
   return (
     <div className="min-h-screen bg-slate-100 text-center p-8">
       <h1 className="text-3xl font-bold">
@@ -49,7 +50,7 @@ const Home = () => {
         {editingId ? (
           <>
             <button
-              onClick={() => editShortcut(id)}
+              onClick={() => editShortcut(editingId)}
               className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700"
             >
               Update ✅
@@ -74,6 +75,7 @@ const Home = () => {
       <input
         value={search}
         onChange={(e) => setSearch(e.target.value)}
+        
         placeholder="Search..."
         className="px-4 py-2 mb-4 rounded border"
       />
