@@ -1,4 +1,7 @@
 // Add to userController.js
+
+import User from '../models/User.js';
+
 export const getUser = async (req, res) => {
   try {
     const user = await User.findById(req.params.userId);
