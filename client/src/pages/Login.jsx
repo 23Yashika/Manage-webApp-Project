@@ -6,22 +6,49 @@ const Login = () => {
   const { username, setUsername, login, error } = useAuth();
 
   return (
-    <div className="min-h-screen flex flex-col justify-center items-center bg-gradient-to-br from-pink-400 via-purple-500 to-indigo-500 text-white p-4">
-      <h1 className="text-4xl font-bold mb-4">Welcome back to <span className="text-yellow-300">WebSnap! 🔥</span></h1>
-      <p className="mb-6 italic">"Your funky shortcut world awaits!"</p>
-      <input
-        type="text"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-        placeholder="Username"
-        className="mb-3 px-4 py-2 rounded text-black"
-      />
-      {error && <p className="text-red-200 italic">{error}</p>}
-      <button onClick={login} className="bg-yellow-300 text-black px-4 py-2 rounded hover:bg-yellow-400 transition">
-        Login 🚀
-      </button>
-      <p className="mt-4">Don't have an account? <Link to="/register" className="underline">Register now 🔥</Link></p>
+    <div
+      className="min-h-screen flex items-center justify-center bg-gradient-to-b from-[#f9f1eb] via-[#f0edea] to-[#a9d7f9] font-['Roboto_Slab',serif] px-4"
+      style={{ fontFamily: "'Roboto Slab', serif" }}
+    >
+      <div className="bg-white rounded-2xl shadow-lg p-8 w-full max-w-md flex flex-col items-center">
+        <h1 className="text-3xl font-extrabold text-[#1f2937] mb-3">
+          Welcome Back to <span className="text-[#2563eb]">WebSnap!</span>
+        </h1>
+        <p className="mb-6 italic text-base text-gray-500 text-center">
+          "Your funky shortcut world awaits!"
+        </p>
+
+        <input
+          type="text"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          placeholder="Username"
+          className="w-full mb-4 px-4 py-3 rounded-md border border-gray-300 text-gray-700 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#2563eb] focus:border-[#2563eb] transition"
+        />
+
+        {error && (
+          <p className="text-red-500 font-semibold mb-4 text-sm">{error}</p>
+        )}
+
+        <button
+          onClick={login}
+          className="w-full bg-[#2563eb] hover:bg-blue-700 text-white font-bold py-3 rounded-md transition-all duration-200 shadow hover:shadow-blue-200 hover:scale-105"
+        >
+          Login 🚀
+        </button>
+
+        <p className="mt-6 text-sm text-gray-700">
+          Don't have an account?{' '}
+          <Link
+            to="/register"
+            className="text-[#2563eb] underline hover:text-blue-700 transition font-semibold"
+          >
+            Register now 🔥
+          </Link>
+        </p>
+      </div>
     </div>
   );
 };
+
 export default Login;
