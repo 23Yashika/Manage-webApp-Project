@@ -18,8 +18,8 @@ const useShortcuts = (userId) => {
       setError(null);
 
       const [userResponse, shortcutsResponse] = await Promise.all([
-        fetch(`http://localhost:5000/api/auth/${userId}`),
-        fetch(`http://localhost:5000/api/shortcuts/${userId}`)
+        fetch(`https://manage-webapp-project.onrender.com/api/auth/${userId}`),
+        fetch(`https://manage-webapp-project.onrender.com/api/shortcuts/${userId}`)
       ]);
 
       if (!userResponse.ok) throw new Error('Failed to fetch user');
@@ -41,7 +41,7 @@ const useShortcuts = (userId) => {
   const addShortcut = async () => {
     if (!name || !url) return;
     try {
-      const response = await fetch('http://localhost:5000/api/shortcuts/add', {
+      const response = await fetch('https://manage-webapp-project.onrender.com/api/shortcuts/add', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -64,7 +64,7 @@ const useShortcuts = (userId) => {
 
   const deleteShortcut = async (id) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/shortcuts/${id}`, {
+      const response = await fetch(`https://manage-webapp-project.onrender.com/api/shortcuts/${id}`, {
         method: 'DELETE'
       });
 
@@ -94,7 +94,7 @@ const useShortcuts = (userId) => {
   const editShortcut = async (id) => {
     if (!name || !url) return;
     try {
-      const response = await fetch(`http://localhost:5000/api/shortcuts/${id}`, {
+      const response = await fetch(`https://manage-webapp-project.onrender.com/api/shortcuts/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
